@@ -48,6 +48,16 @@ export const DiscussionsList = ({
           field: 'title',
         },
         {
+          title: 'Author',
+          field: 'author',
+          Cell({ entry: { author } }) {
+            const name = [author?.firstName, author?.lastName]
+              .filter(Boolean)
+              .join(' ');
+            return <span>{name || '—'}</span>;
+          },
+        },
+        {
           title: 'Created At',
           field: 'createdAt',
           Cell({ entry: { createdAt } }) {

@@ -24,7 +24,7 @@ test(
   'should create, render and delete discussions',
   { timeout: 10000 },
   async () => {
-    await renderApp(<DiscussionsRoute />);
+    const { user: authUser } = await renderApp(<DiscussionsRoute />);
 
     const newDiscussion = createDiscussion();
 
@@ -55,7 +55,7 @@ test(
     const row = await screen.findByRole(
       'row',
       {
-        name: `${newDiscussion.title} ${formatDate(newDiscussion.createdAt)} View Delete Discussion`,
+        name: `${newDiscussion.title} ${authUser?.user.firstName} ${authUser?.user.lastName} ${formatDate(newDiscussion.createdAt)} View Delete Discussion`,
       },
       { timeout: 5000 },
     );
